@@ -10,18 +10,22 @@ const FormField = ({
     as = "input", 
     options = []
 }: FormFieldProps) => {
-
-    const InputToRender = ({type} : {type: string}) => {
-        if(type === 'textarea'){
-            return <textarea 
+    
+    
+  return (
+    <div className='form-field'>
+      <label htmlFor={id}>{label}</label>
+      
+      { as === 'textarea' ?
+            (<textarea 
                 id={id}
                 name={id}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-            />
-        }else if(type ==='select'){
-            return <select 
+            />) :
+        as ==='select' ? (
+            <select 
                 id={id}
                 name={id}
                 value={value}
@@ -32,21 +36,17 @@ const FormField = ({
                 ))}
 
             </select>
-        }else{
-            return <input 
+        ) : ( <input 
                 id={id}
                 name={id}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
             />
+        )
         }
-    }
 
-  return (
-    <div className='form-field'>
-      <label htmlFor={id}>{label}</label>
-      <InputToRender type={as}/>
+
     </div>
   )
 }
